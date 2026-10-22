@@ -9,7 +9,7 @@ Use Playwright only for the **Transaction Line Editor** steps a persona must see
 (`search · add line · configure · price · save · validate price`). After a Salesforce release only that helper changes —
 and `npm run helper-churn` counts how much.
 
-- **L0** catalog integrity and org parity — DuckDB snapshots + SQL checks
+- **L0** catalog integrity and org parity — one read-only extract per org into a local SQL snapshot (DuckDB), then SQL checks and a natural-key diff
 - **L1 / L2** Place Sales Transaction, lifecycle actions (amend / renew / cancel), approvals, standard REST — against human-owned expected results
 - **L3** one Transaction Line Editor journey per area, per persona; zero locators in spec files (lint-enforced)
 - **Four agents** write, review and explain tests. **They never decide pass/fail and never merge.**
