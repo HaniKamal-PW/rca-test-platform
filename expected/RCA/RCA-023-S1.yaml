@@ -1,0 +1,16 @@
+scenarioId: RCA-023-S1
+storyKey: RCA-023
+project: RCA
+expectedType: CORRECTNESS
+input:
+  account: { currency: GBP }
+  opportunity: { stage: Prospecting }
+  priceBook: Standard GBP
+  lines: [ { productCode: SUB-ANALYTICS-PRO, productId: 01tXXXXXXXXXXXX, sellingModelId: 0jPXXXXXXXXXXXX, quantity: 10 } ]
+  amend: { newQuantity: 15, monthsIn: 6 }
+expected:
+  deltaQuantity: 5
+  proratedTotal: 125.00
+  assetQuantityAfter: 15
+tolerance: 0.01
+approvedBy: story owner

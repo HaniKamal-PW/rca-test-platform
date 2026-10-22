@@ -1,0 +1,24 @@
+# Objects extracted per org. `standard` works in any org; `rca` needs Revenue Cloud Advanced (--rca).
+# The extractor records any object that fails to query as SKIPPED (never passed) in table `_skipped`.
+# Field names are the documented ones at the time of writing — confirm against your org's describe.
+standard:
+  product2: "SELECT Id, Name, ProductCode, IsActive, BasedOnId FROM Product2"
+  pricebook2: "SELECT Id, Name, IsActive, IsStandard FROM Pricebook2"
+  pricebookentry: "SELECT Id, Product2Id, Pricebook2Id, UnitPrice, IsActive FROM PricebookEntry"
+  recordtype: "SELECT Id, Name, DeveloperName, SobjectType, IsActive FROM RecordType WHERE SobjectType IN ('Account','Opportunity','Quote','Order')"
+rca:
+  # richer PBE: CurrencyIsoCode needs multi-currency; ProductSellingModelId needs RCA
+  pricebookentry: "SELECT Id, Product2Id, Pricebook2Id, UnitPrice, IsActive, CurrencyIsoCode, ProductSellingModelId FROM PricebookEntry"
+  productclassification: "SELECT Id, Name, Code, Status FROM ProductClassification"
+  productclassificationattr: "SELECT Id, Name, ProductClassificationId, AttributeDefinitionId, DefaultValue, IsRequired FROM ProductClassificationAttr"
+  attributedefinition: "SELECT Id, Name, Code, DataType, PicklistId, IsActive FROM AttributeDefinition"
+  attributepicklist: "SELECT Id, Name, Status FROM AttributePicklist"
+  attributepicklistvalue: "SELECT Id, PicklistId, Value, Status FROM AttributePicklistValue"
+  productattributedefinition: "SELECT Id, Product2Id, AttributeDefinitionId, DefaultValue, IsRequired FROM ProductAttributeDefinition"
+  productsellingmodel: "SELECT Id, Name, SellingModelType, Status FROM ProductSellingModel"
+  productsellingmodeloption: "SELECT Id, Product2Id, ProductSellingModelId, IsDefault FROM ProductSellingModelOption"
+  productcomponentgroup: "SELECT Id, Name, ParentProductId, MinBundleComponents, MaxBundleComponents FROM ProductComponentGroup"
+  productrelatedcomponent: "SELECT Id, ParentProductId, ChildProductId, ProductComponentGroupId, MinQuantity, MaxQuantity, Quantity, ProductRelationshipTypeId FROM ProductRelatedComponent"
+  productcatalog: "SELECT Id, Name, Status FROM ProductCatalog"
+  productcategory: "SELECT Id, Name, CatalogId, IsNavigational FROM ProductCategory"
+  productcategoryproduct: "SELECT Id, ProductCategoryId, ProductId FROM ProductCategoryProduct"

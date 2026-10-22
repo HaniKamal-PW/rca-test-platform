@@ -1,0 +1,20 @@
+# Expected results for one scenario. Values are ILLUSTRATIVE — replace with your org's.
+scenarioId: RCA-001-S1
+storyKey: RCA-001
+project: RCA
+expectedType: CORRECTNESS          # numbers came from the story owner; REGRESSION = captured from DEV
+input:
+  priceBook: Standard GBP
+  priceBookId: 01sXXXXXXXXXXXX      # resolve in your org
+  currency: GBP
+  productCode: SUB-ANALYTICS-PRO
+  productId: 01tXXXXXXXXXXXX
+  sellingModel: Term Annual
+  sellingModelId: 0jPXXXXXXXXXXXX
+  quantity: 120
+expected:
+  listPrice: 50.00
+  netUnitPrice: 45.00
+  totalPrice: 5400.00
+tolerance: 0.01
+approvedBy: story owner

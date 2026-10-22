@@ -1,0 +1,17 @@
+name: PR gate
+on: { pull_request: {} }
+jobs:
+  lint-and-l0:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20 }
+      - run: npm ci
+      - run: npm run lint
+      # L0 + L1 against the QA sandbox need JWT auth from the CI vault — enable once secrets exist:
+      # - run: npm i -g @salesforce/cli
+      # - run: echo "$SF_JWT_KEY" > server.key && sf org login jwt --client-id "$SF_CLIENT_ID" --jwt-key-file server.key --username "$SF_USERNAME" --alias RCA_QA --instance-url https://test.salesforce.com
+      #   env: { SF_JWT_KEY: ${{ secrets.SF_JWT_KEY }}, SF_CLIENT_ID: ${{ secrets.SF_CLIENT_ID }}, SF_USERNAME: ${{ secrets.SF_USERNAME }} }
+      # - run: pip install -r requirements.txt && npm run l0:extract -- RCA_QA --rca && npm run l0:check -- RCA_QA
+      # - run: npx playwright install --with-deps chromium && TARGET_ORG=RCA_QA npx playwright test --project=l1-api

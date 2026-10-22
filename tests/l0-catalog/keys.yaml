@@ -1,0 +1,7 @@
+# Natural keys for parity. Record IDs differ per org; keys must not.
+# Recommendation: add an External_Id__c to every catalog object without a stable code.
+product2:       { key: [ProductCode] }
+pricebook2:     { key: [Name] }
+pricebookentry: { key: [Pricebook2Id, Product2Id, CurrencyIsoCode] }   # resolve to parent keys once lookups are normalised
+recordtype:     { key: [SobjectType, DeveloperName] }
+ignore: [Id, OwnerId, CreatedDate, CreatedById, LastModifiedDate, LastModifiedById, SystemModstamp, LastViewedDate, LastReferencedDate]

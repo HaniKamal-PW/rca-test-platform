@@ -1,0 +1,17 @@
+scenarioId: RCA-024-S1
+storyKey: RCA-024
+project: RCA
+expectedType: CORRECTNESS
+input:
+  account: { currency: GBP }
+  opportunity: { stage: Prospecting }
+  priceBook: Standard GBP
+  lines: [ { productCode: SUB-ANALYTICS-PRO, productId: 01tXXXXXXXXXXXX, sellingModelId: 0jPXXXXXXXXXXXX, quantity: 10 } ]
+  renew: { termMonths: 12, upliftPct: 5 }
+expected:
+  quantity: 10
+  netUnitPrice: 52.50
+  total: 525.00
+  startsDayAfterCurrentEnd: true
+tolerance: 0.01
+approvedBy: story owner

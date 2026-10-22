@@ -1,0 +1,38 @@
+# Project and environment registry.
+# Every story resolves to ONE project, ONE org and ONE persona before any agent acts.
+# Agents never see credentials: aliases are Salesforce CLI aliases (sf org login web --alias <alias>).
+
+defaultProject: RCA
+
+projects:
+  RCA:
+    name: Revenue Cloud pilot
+    apiVersion: "68.0"          # Winter '26 — informational; the harness reads the org's live version from `sf org display`
+    release: "Winter '26"
+    defaultOrg: DEV
+    orgs:
+      DEV:
+        alias: RCA_DEV            # the integration/admin login used for API tests and L0
+        kind: sandbox
+        writes: true
+        personas:                 # UI sessions; one storageState per persona
+          sales_rep: RCA_DEV            # same user as the alias until you create more test users
+          approver:  RCA_DEV_APPROVER
+          deal_desk: RCA_DEV_DEALDESK
+          partner:   RCA_DEV_PARTNER
+      QA:
+        alias: RCA_QA
+        kind: sandbox
+        writes: true
+        personas: { sales_rep: RCA_QA, approver: RCA_QA_APPROVER }
+      # UAT:  { alias: RCA_UAT,  kind: sandbox,    writes: false, personas: {} }
+      # PROD: { alias: RCA_PROD, kind: production, writes: false, personas: {} }   # L0 read-only only
+    defaultPersona: sales_rep
+    areas: [Catalog, Pricing, Lifecycle, Approvals, Fulfilment, Billing, Security, UI, Account, Opportunity, Quote, Order]
+    personas: [sales_rep, approver, deal_desk, partner]
+    pricingKeywords: [price, discount, tier, ramp, proration, tax, uplift, price book, currency]
+    # areas whose stories must name a persona (Intake readiness rule)
+    personaRequiredAreas: [UI, Security, Approvals]
+
+agents:
+  roster: [Intake, Builder, Gatekeeper, Triager]

@@ -1,0 +1,14 @@
+scenarioId: RCA-012-S1
+storyKey: RCA-012
+project: RCA
+expectedType: CORRECTNESS
+input:
+  account: { currency: GBP }
+  priceBook: Standard GBP
+  lines: [ { productCode: SUB-ANALYTICS-PRO, quantity: 10, discountPct: 25 } ]
+  approverPersona: approver
+expected:
+  statusAfterSubmit: In Review
+  statusAfterApprove: Approved
+  belowThresholdPct: 10
+approvedBy: story owner

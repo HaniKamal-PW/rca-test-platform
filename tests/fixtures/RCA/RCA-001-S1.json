@@ -1,0 +1,5 @@
+{
+  "account": { "name": "ACC-<runId>-RCA-001-S1", "currency": "GBP", "priceBook": "Standard GBP" },
+  "opportunity": { "name": "OPP-<runId>-RCA-001-S1", "stage": "Prospecting" },
+  "lines": [ { "productCode": "SUB-ANALYTICS-PRO", "sellingModel": "Term Annual", "quantity": 120 } ]
+}

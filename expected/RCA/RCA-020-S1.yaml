@@ -1,0 +1,17 @@
+scenarioId: RCA-020-S1
+storyKey: RCA-020
+project: RCA
+expectedType: CORRECTNESS
+input:
+  account: { currency: GBP }
+  priceBook: Standard GBP
+  bundle: { productCode: BND-ANALYTICS-SUITE, productId: 01tXXXXXXXXXXXX, sellingModelId: 0jPXXXXXXXXXXXX, quantity: 1 }
+  requiredChild: SUB-ANALYTICS-PRO
+  optionalChild: ADD-PREMIUM-SUPPORT
+expected:
+  linesWithOptional: 3
+  totalWithOptional: 60.00
+  linesWithoutOptional: 2
+  totalWithoutOptional: 50.00
+tolerance: 0.01
+approvedBy: story owner

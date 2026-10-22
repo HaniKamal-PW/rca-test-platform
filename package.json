@@ -1,0 +1,34 @@
+{
+  "name": "rca-test-platform",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Agentic test platform for Salesforce Revenue Cloud Advanced (RCA): L0 catalog checks, L1/L2 API tests, L3 Playwright UI tests, agent-assisted authoring with a human gate.",
+  "scripts": {
+    "run:new": "node scripts/new-run.mjs",
+    "log": "node scripts/log-event.mjs",
+    "org": "node scripts/resolve-org.mjs",
+    "runlog": "node scripts/runlog.mjs",
+    "lint": "eslint tests/",
+    "test": "playwright test",
+    "test:ui": "playwright test --ui",
+    "test:headed": "playwright test --headed",
+    "report": "playwright show-report",
+    "l0:extract": "python tests/l0-catalog/extract.py",
+    "l0:check": "python tests/l0-catalog/run_checks.py",
+    "l0:parity": "python tests/l0-catalog/parity.py",
+    "sweep": "node scripts/sweep.mjs",
+    "test:l1": "playwright test --project=l1-api",
+    "test:l2": "playwright test --project=l2-lifecycle",
+    "test:l3": "playwright test --project=l3-ui --headed",
+    "helper-churn": "node scripts/helper-churn.mjs"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.56.0",
+    "@types/node": "^22.0.0",
+    "@typescript-eslint/parser": "^8.0.0",
+    "eslint": "^9.0.0",
+    "typescript": "^5.6.0",
+    "yaml": "^2.6.0"
+  }
+}

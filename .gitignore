@@ -1,0 +1,14 @@
+node_modules/
+.auth/
+.env
+snapshots/
+test-results/
+playwright-report/
+blob-report/
+runlogs/*.jsonl
+runlogs/.current-run
+runlogs/**/*.results.json
+.venv/
+__pycache__/
+l0-report.json
+l0-report.html

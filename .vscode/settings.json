@@ -1,0 +1,5 @@
+{
+  "playwright.showTrace": true,
+  "playwright.reuseBrowser": true,
+  "chat.agentFilesLocations": [".github/agents"]
+}

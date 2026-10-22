@@ -1,0 +1,14 @@
+scenarioId: RCA-010-S1
+storyKey: RCA-010
+project: RCA
+expectedType: CORRECTNESS
+input:
+  account: { type: Partner, currency: GBP, industry: Technology }
+  opportunity: { stage: Prospecting, priceBook: Partner GBP }
+expected:
+  opportunityPriceBook: Partner GBP
+  negative:
+    omitField: Industry
+    errorCode: FIELD_CUSTOM_VALIDATION_EXCEPTION
+    ruleName: Partner_Industry_Required
+approvedBy: story owner

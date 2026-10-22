@@ -1,0 +1,14 @@
+scenarioId: RCA-021-S1
+storyKey: RCA-021
+project: RCA
+expectedType: CORRECTNESS
+input:
+  account: { currency: GBP }
+  priceBook: Standard GBP
+  product: { productCode: SUB-ANALYTICS-PRO, productId: 01tXXXXXXXXXXXX, sellingModelId: 0jPXXXXXXXXXXXX, quantity: 1 }
+  attribute: Tier
+expected:
+  Standard: 50.00
+  Enterprise: 80.00
+tolerance: 0.01
+approvedBy: story owner

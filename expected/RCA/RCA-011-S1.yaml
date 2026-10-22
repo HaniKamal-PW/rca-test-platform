@@ -1,0 +1,14 @@
+scenarioId: RCA-011-S1
+storyKey: RCA-011
+project: RCA
+expectedType: CORRECTNESS
+input:
+  account: { currency: GBP }
+  opportunity: { stage: Prospecting }
+  priceBook: Standard GBP
+  lines: [ { productCode: SUB-ANALYTICS-PRO, quantity: 10 } ]
+expected:
+  quoteTotal: 500.00
+  opportunityAmountAfterSync: 500.00
+tolerance: 0.01
+approvedBy: story owner
