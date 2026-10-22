@@ -45,6 +45,21 @@ Gatekeeper must be a different agent from the one that wrote the code; Triager o
 Details and what to confirm in your org: [docs/AREAS.md](docs/AREAS.md) · Flow: [docs/FLOW.md](docs/FLOW.md) ·
 Releases and metric 9: [docs/RELEASES.md](docs/RELEASES.md) · Orgs and personas: [docs/ENVIRONMENTS.md](docs/ENVIRONMENTS.md)
 
+## Demo: the RCA Agent Board
+**Live board:** https://play.managedapps.cloud.microsoft/apps/d9182f1a-3a8d-440d-bdb7-cff081273931
+
+A visual companion for demos: one lane per agent showing state (idle · running · waiting-review · done · rejected), current
+run and target, and last action; an approval-gate bar (stories → scenarios → tests → in review → merged, with the
+Gatekeeper + human gate before "merged"); a live event feed; and a guardrail tile (Gatekeeper rejections, REGRESSION-tagged
+tests, production access attempts — always 0). **Replay** plays a recorded sample run at 1× / 5× / 10× with pause and reset,
+so the demo works with nothing connected.
+
+The board consumes the same event shape every agent writes to `runlogs/agent-events.jsonl`
+(`{ts, runId, project, org, agent, state, tool, target, message, pr}`), so your own runs can replace the built-in recording
+once a "Load run" option is added. Today it is a **replay of a recorded run, not a live monitor**; the lanes still show the
+original eight-agent roster and will be renamed to Intake · Builder · Gatekeeper · Triager.
+
+
 ## Layout
 ```
 .github/agents/            intake · builder · gatekeeper · triager      .github/copilot-instructions.md  shared rules
