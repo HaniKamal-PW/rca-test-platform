@@ -48,17 +48,18 @@ Releases and metric 9: [docs/RELEASES.md](docs/RELEASES.md) · Orgs and personas
 ## Demo: the RCA Agent Board
 **Live board:** https://play.managedapps.cloud.microsoft/apps/d9182f1a-3a8d-440d-bdb7-cff081273931
 
-A visual companion for demos: one lane per agent showing state (idle · running · waiting-review · done · rejected), current
-run and target, and last action; an approval-gate bar (stories → scenarios → tests → in review → merged, with the
-Gatekeeper + human gate before "merged"); a live event feed; and a guardrail tile (Gatekeeper rejections, REGRESSION-tagged
-tests, production access attempts — always 0). **Replay** plays a recorded sample run at 1× / 5× / 10× with pause and reset,
-so the demo works with nothing connected.
+A visual companion for demos, built around the same four agents and the same human gate as this repo.
+
+- **Four lanes — Intake → Builder → Gatekeeper → Triager** — each showing state (idle · running · waiting-review · done · rejected), current run and target, and last action.
+- **Pipeline bar** — stories → scenarios → tests → in review → merged. Nothing reaches *merged* without the human gate.
+- **Human merge gate** — when Gatekeeper approves, the replay pauses and shows the PR, its changed files and the review findings. **Approve & merge** records a `Human merged PR` event and lets Triager run; **Reject (send back to Builder)** records the reason, puts Builder into rework and brings the PR back through Gatekeeper. The human is a distinct actor in the feed.
+- **Live event feed** and a **guardrail tile** — Gatekeeper rejections, REGRESSION-tagged tests, production access attempts (always 0), and *Helper changes this release* (metric 9 — increments when Builder edits `tests/l3-ui/_tle.ts`).
+- **Replay / Pause / Resume / Reset** at 1× / 5× / 10× playing a recorded RCA-020 run (bundle story): Intake grades READY 7/7, Builder writes `RCA-020-S1` (API) and `RCA-020-S2` (Transaction Line Editor) and opens PR #14, Gatekeeper rejects a `waitForTimeout` in the TLE helper, Builder heals it, Gatekeeper approves, you merge, Triager classifies one failure as **data** and one as **UI change**.
 
 The board consumes the same event shape every agent writes to `runlogs/agent-events.jsonl`
-(`{ts, runId, project, org, agent, state, tool, target, message, pr}`), so your own runs can replace the built-in recording
-once a "Load run" option is added. Today it is a **replay of a recorded run, not a live monitor**; the lanes still show the
-original eight-agent roster and will be renamed to Intake · Builder · Gatekeeper · Triager.
-
+(`{ts, runId, project, org, agent, state, tool, target, message, pr}`), so your own runs can replace the built-in recording once a
+"Load run" option is added. Today it is a **replay of a recorded run, not a live monitor**. The link opens for people in the
+organisation's Microsoft 365 tenant.
 
 ## Layout
 ```
